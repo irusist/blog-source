@@ -70,3 +70,7 @@ theme: yilia
 deploy:
   type: git
   repo: git@github.com:irusist/irusist.github.io.git
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
