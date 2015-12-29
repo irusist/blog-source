@@ -5,14 +5,14 @@
 # Site
 title: irusist - 坚持是一种美德
 subtitle: 
-description: adasd
+description: Java, Scala, Golang等开发
 author: irusist
 language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://irusist.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
