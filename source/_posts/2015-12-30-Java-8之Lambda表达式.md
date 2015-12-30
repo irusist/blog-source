@@ -3,6 +3,7 @@ title: Java 8之Lambda表达式
 date: 2015-12-30 13:22:50
 tags: [Lambda, Java8]
 categories: Java
+description: Java 8之Lambda表达式
 ---
 
 ## Lambda简介
@@ -17,6 +18,8 @@ public interface Filter<T> {
     boolean f(T t);
 }
 ```
+
+<!-- more -->
 
 有以下过滤器
 ```java
