@@ -104,15 +104,15 @@ def addUaHeader[A](action: Action[A]) = Action.async(action.parser) { request =>
 
 ## 不同的请求类型
 
-`ActionFunction`是一个作用域request的方法，它可以用于权限，认证，查询数据库对象等。有以下内置的`ActionFunction`：
+`ActionFunction`是一个作用于request的方法，它可以用于权限，认证，查询数据库对象等。有以下内置的`ActionFunction`：
 
   * `ActionTransformer`：可以用来修改request，如增加一些额外的信息。
 
   * `ActionFilter`：可以用来拦截某些不符合条件的请求，不用来改变请求的值。
 
-  * `ActionRefiner`：是上面2个的结合体
+  * `ActionRefiner`：是上面2个的父类
 
-  * `ActionBuilder`：以`Request`作为输入参数，生成Action。
+  * `ActionBuilder`：以`Request`作为输入参数，生成Action，是上面3个的父类，最通用的类。
 
 
 ### 认证
