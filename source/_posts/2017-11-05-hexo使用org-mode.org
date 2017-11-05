@@ -7,8 +7,6 @@
 之前hexo用的一直都是markdown，从今天开始切换到org-mode，以下是安装的一些步骤
 
 
-** hexo
-
 *** 安装
 
 #+BEGIN_SRC bash
@@ -43,9 +41,11 @@ npm install https://github.com/CodeFalling/hexo-renderer-org#emacs --save
 
 在 _config.yml 添加以下内容
 
+#+BEGIN_SRC yml
 org:
     emacs: 'D:\soft\emacs-25.1-x86_64-w64-mingw32\bin\emacs.exe'
     common: |
         #+OPTIONS: toc:nil num:nil
+#+END_SRC
 
-在 _config.yml 的 new_post_name  修改为org文件名
+ 在 _config.yml 的 new_post_name  修改为org文件名
