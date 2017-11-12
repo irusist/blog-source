@@ -17,6 +17,9 @@
 + registry指定镜像
 + proxy指定代理
 
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML
 
 *** 配置
 
