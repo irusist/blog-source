@@ -76,7 +76,8 @@ sitemap:
   path: sitemap.xml
 
 org:
-  emacs: 'D:\soft\emacs-25.1-x86_64-w64-mingw32\bin\emacs.exe'
+#  emacs: 'D:\soft\emacs-25.1-x86_64-w64-mingw32\bin\emacs.exe'
+  emacs: /usr/local/bin/emacs
   common: |
           #+OPTIONS: toc:nil num:nil
           #+BIND: org-html-postamble \"\"
