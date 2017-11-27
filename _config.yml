@@ -34,7 +34,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -76,8 +76,8 @@ sitemap:
   path: sitemap.xml
 
 org:
-#  emacs: 'D:\soft\emacs-25.1-x86_64-w64-mingw32\bin\emacs.exe'
-  emacs: /usr/local/bin/emacs
+  emacs: 'D:\soft\emacs-25.1-x86_64-w64-mingw32\bin\emacs.exe'
+#  emacs: /usr/local/bin/emacs
   common: |
           #+OPTIONS: toc:nil num:nil
           #+BIND: org-html-postamble \"\"

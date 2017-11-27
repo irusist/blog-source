@@ -1,0 +1,164 @@
+#+TITLE: Java的一些内存泄露
+#+DATE: <2017-11-27 周一>
+#+TAGS: Java mat 
+#+LAYOUT: post
+#+CATEGORIES: Java
+#+OPTIONS: ^:nil
+
+最近有个后台项目开发环境报OOM， 最后利用mat分析出具体原因是，在开发环境，开发人员为了方便，用jboss的热部署来部署更新完的war包，重新部署后，会reload spring的容器类，
+但是有的类实例不能被卸载，导致有多个实例，之前存在的实例的定时任务一直在执行，最后导致OOM。 于是分析了具体不能被卸载的类，主要有以下2种情况：
+
+ + 存在定时任务没有被停止，造成有活跃的Thread，由于被根对象引用，造成不能被回收
+ + 实例被静态单例的类实例引用，如果要回收这个实例，必须回收Class对象，但是Class对象ClassLoader引用，而ClassLoader不能被回收的话，造成静态实例不能被回收。
+
+#+BEGIN_HTML
+<!-- more -->
+#+END_HTML
+
+以下用测试程序说明下：
+
+** 定时任务没有被停止
+
+*** 修改之前
+
+类对象
+#+BEGIN_SRC java
+@Service
+public class TimerLeak {
+    private Timer timer = new Timer();
+    public TimerLeak() {
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+            }
+        }, 0, 5000);
+    }
+}
+#+END_SRC
+
+加载Spring Bean并reload
+#+BEGIN_SRC java
+public class Main {
+    public static void main(String[] args) throws Exception {
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("appContext.xml");
+        ctx.getBean("timerLeak");
+        ctx.refresh();
+        Thread.currentThread().join();
+    }
+}
+#+END_SRC
+
+mat分析dump得到如下
+
+[[file:TimerLeakBefore.png]]
+
+查看被哪个根路径引用
+
+[[file:TimerLeakBeforeRootPath.png]]
+
+*** 修改之后
+
+类对象
+#+BEGIN_SRC java
+@Service
+public class TimerLeak implements DisposableBean {
+    private Timer timer = new Timer();
+    public TimerLeak() {
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+            }
+        }, 0, 5000);
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        timer.cancel();
+    }
+}
+#+END_SRC
+
+mat分析dump得到如下
+
+[[file:TimerLeakAfter.png]]
+
+
+** 静态类实例引用
+
+*** 修改之前
+
+类对象
+
+#+BEGIN_SRC java
+@Service
+public class StaticContainerLeak {
+    public String getName() {
+        return "test";
+    }
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+public class StaticContainer {
+    private static Map<String, StaticContainerLeak> map = new HashMap<>();
+    public static void addData(StaticContainerLeak containerLeak) {
+        map.put(containerLeak.getName(), containerLeak);
+    }
+}
+#+END_SRC
+
+reload spring的类
+#+BEGIN_SRC java
+public class Main {
+    public static void main(String[] args) throws Exception {
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("appContext.xml");
+        StaticContainer.addData(ctx.getBean("staticContainerLeak", StaticContainerLeak.class));
+        ctx.refresh();
+        Thread.currentThread().join();
+    }
+}
+#+END_SRC
+
+mat分析dump得到如下
+
+[[file:StaticContainerLeakBefore.png]]
+
+查看被哪个根路径引用
+
+[[file:StaticContainerLeakBeforeRootPath.png]]
+
+*** 修改之后
+
+类对象
+#+BEGIN_SRC java
+public class StaticContainer {
+    private static Map<String, StaticContainerLeak> map = new HashMap<>();
+    public static void addData(StaticContainerLeak containerLeak) {
+        map.put(containerLeak.getName(), containerLeak);
+    }
+    public static void clear() {
+        map.clear();
+    }
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+@Service
+public class SpringContextDestory implements DisposableBean {
+    @Override
+    public void destroy() throws Exception {
+        StaticContainer.clear();
+    }
+}
+#+END_SRC
+
+mat分析dump得到如下
+
+[[file:StaticContainerLeakAfter.png]]
+
+
+因此在开发时，尤其是中间件等框架，要注意：
+
+  + 对象销毁时需要停止定时任务， 以及设置相关变量的值
+  + 对引用外部实例的API，尤其注意要销毁清除
+
