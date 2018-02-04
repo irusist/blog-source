@@ -1,0 +1,80 @@
+#+TITLE: 最近处理的问题
+#+DATE: <2017-11-27 周一>
+#+TAGS: Java mat 
+#+LAYOUT: post
+#+CATEGORIES: Java
+#+OPTIONS: ^:nil
+
+
+** 堆外内存排查
+
+*** 排查路径
+
+使用google-perftools排查消耗的堆外内存，是由Java_java_util_zip inflate_init导致的， 业务方最终通过变更was版本和安装卸载调用链排查出， 最后发现 原因是 IBM J9的R9 版本的一个bug导致的堆外内存泄露（JVMTI和JIT使用的时候会发生垃圾回收失败，内部调用链系统用的是JVMTI方式）
+
+*** 思考
+
+这个问题协助到堆外内存排查，之后他们自己用排除法排查了，耗时了十几小时排查出来吧， 排查法来解决问题，只是靠猜测和运气， 不知道用btrace是否能排查出， 或者其他思路？
+
+*** 额外资料
+
+   + http://www-01.ibm.com/support/docview.wss?uid=swg1IZ99243
+   + https://elasticsearch.cn/article/178
+   + http://www.cnblogs.com/persistentsnail/p/3294843.html
+   + http://blog.csdn.net/a837199685/article/details/75784279
+   + https://ylgrgyq.github.io/2016/07/17/found-a-bug-in-netty/
+   + http://blog.csdn.net/f529352479/article/details/51908655
+   + http://blog.2baxb.me/archives/918
+   + https://github.com/nereuschen/blog/issues/28
+   + https://github.com/nereuschen/blog/issues/29
+   + https://gperftools.github.io/gperftools/heapprofile.html
+   + http://www.dylan326.com/2017/09/28/gperftools/
+
+** 使用zk做leader选举问题
+
+*** 排查路径
+
+在用zk做leader选举时，当只有一条机器，但是却出现了不是leader的情况，查看了代码， 发现在监听事件时，没有监听SyncConnected事件变更， 导致断开连接后应用的leader状态变更为false之后，没有恢复成true。
+
+在验证具体场景时， 当初由于应用日志都已丢失， 无法查看到何时发生什么事情。 一开始怀疑是不是zk集群在某个时刻出现了宕机的情况，导致重试时触发SyncConnected事件， 但是确认之后，zk集群的启动时间远远早于
+zk leader选举用节点创建的时间， 于是排除zk集群宕机的可能。
+
+在毫无头绪的情况下， dump了应用的内存， 看看是否能查看原因。 通过dump上的zk的sessionId，在zk集群的日志中搜索发现中间某个时间段确实触发了SyncConnected，并且前后发生了与集群的其他机器之间的readTimeout异常，
+由此猜测可能是由于期间zk集群发生网络异常，导致集群间无法选举出leader，造成zk崩溃， 等网络连通后触发SyncConnected事件。 在本地通过防火墙禁用集群间的端口能复现次问题。 
+
+** tomcat停止时报ClassNotFoundException
+
+*** 排查路径
+
+初步怀疑是由于远程调用框架引用的netty的某些线程没有正常关闭， 而tomcat的容器已经关闭，造成classLoader不能加载到某个类造成的。
+
+修改tomcat的日志配置， 将线程名称打印出来， 发现是  threadDeathWatcher 线程抛出的异常， 所以在 netty优雅关闭之后  调用 ThreadDeathWatcher.awaitInactivity 关闭这个线程。
+
+*** 参考资料
+
+  + https://tomcat.apache.org/tomcat-7.0-doc/logging.html
+  + https://github.com/netty/netty/issues/2084
+  + https://github.com/netty/netty/issues/6062
+
+** tomcat停止时远程调用框架报找不到服务
+
+*** 排查路径
+
+找不到服务的一般原因是服务提供方全部下线了造成的，但是确认当时服务提供方是上线的， 所以再确认了有以下情况会将服务提供方删除
+
+  1. 服务调用失败， 会将当前的服务提供方设置为不可用
+  2. 服务提供方的连接断开
+
+第1种情况，确认了当时服务提供方是正常的， 不会出现异常的情况。现在只剩第2种情况，可是在服务框架层是通过优雅停机的方式来关闭netty的连接的，为什么会出现在调用过程中服务提供方连接断开？
+
+由于在tomcat下测试没有问题，而在jboss下就重现了问题，而之前netty的关闭是通过jvm shutdown hook中调用的， 在这前后添加日志发现， 在jboss情况下， jvm shutdown hook是优先于spring容器的关闭而调用的，
+因此出现有情况的情况下关闭连接，导致所有提供者都下线。
+
+*** 参考资料
+ 
+   + http://www.infoq.com/cn/articles/netty-elegant-exit-mechanism-and-principles
+
+
+
+
+
