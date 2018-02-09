@@ -31,10 +31,32 @@
 -XX:+PrintAssembly
 #+END_SRC
 
+#+BEGIN_SRC 
+-XX:+PrintCompilation
+-XX:+UnlockDiagnosticVMOptions
+-XX:+PrintInlining
+-XX:+LogCompilation
+-XX:
+-XX:+TraceClassLoading
+-XX:+PrintAssembly
+#+END_SRC
+
+日志输出：
+  + b    Blocking compiler (always set for client)
+  + *    Generating a native wrapper
+  + %    On stack replacement (where the compiled code is running)
+  + !    Method has exception handlers
+  + s    Method declared as synchronized
+  + n    Method declared as native
+  + made non entrant    compilation was wrong/incomplete, no future callers will use this
+  + made zombie         code is not in use and ready for GC  
+
 
 ** jitwatch
 
 https://github.com/AdoptOpenJDK/jitwatch
+
+
 
 
 ** 参考资料
@@ -47,5 +69,6 @@ https://github.com/AdoptOpenJDK/jitwatch
   + http://g.oswego.edu/dl/jmm/cookbook.html
   + https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html#BABDDFII
   + http://www.infoq.com/cn/articles/memory_barriers_jvm_concurrency
+  + http://blog.joda.org/2011/08/printcompilation-jvm-flag.html
 
 
