@@ -1,0 +1,74 @@
+#+TITLE: Java汇编代码查看
+#+DATE: <2017-11-27 周一>
+#+TAGS: Java mat 
+#+LAYOUT: post
+#+CATEGORIES: Java
+#+OPTIONS: ^:nil
+
+
+** hsdis
+
+以下链接下载
+
+  + http://hllvm.group.iteye.com/
+  + http://fcml-lib.com/download.html
+
+通过下面方法编译
+
+  + https://www.chrisnewland.com/building-hsdis-on-linux-amd64-on-debian-369
+
+
+放在 $JDK_HOME/jre/bin/server下
+
+配置以下命令行参数：
+
+#+BEGIN_SRC 
+-server
+-Xcomp
+-XX:+UnlockDiagnosticVMOptions
+-XX:CompileCommand=dontinline,*TestMain.setData
+-XX:CompileCommand=compileonly,*TestMain.setData
+-XX:+PrintAssembly
+#+END_SRC
+
+#+BEGIN_SRC 
+-XX:+PrintCompilation
+-XX:+UnlockDiagnosticVMOptions
+-XX:+PrintInlining
+-XX:+LogCompilation
+-XX:
+-XX:+TraceClassLoading
+-XX:+PrintAssembly
+#+END_SRC
+
+日志输出：
+  + b    Blocking compiler (always set for client)
+  + *    Generating a native wrapper
+  + %    On stack replacement (where the compiled code is running)
+  + !    Method has exception handlers
+  + s    Method declared as synchronized
+  + n    Method declared as native
+  + made non entrant    compilation was wrong/incomplete, no future callers will use this
+  + made zombie         code is not in use and ready for GC  
+
+
+** jitwatch
+
+https://github.com/AdoptOpenJDK/jitwatch
+
+
+
+
+** 参考资料
+
+  + http://ifeve.com/volatile/
+  + http://www.infoq.com/cn/articles/zzm-java-hsdis-jvm
+  + http://read.pudn.com/downloads100/doc/project/409708/IA-32%E5%8D%B73%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97[123457%2011%2012].pdf
+  + https://software.intel.com/en-us/articles/intel-sdm
+  + https://www.csee.umbc.edu/portal/help/architecture/aig.pdf
+  + http://g.oswego.edu/dl/jmm/cookbook.html
+  + https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html#BABDDFII
+  + http://www.infoq.com/cn/articles/memory_barriers_jvm_concurrency
+  + http://blog.joda.org/2011/08/printcompilation-jvm-flag.html
+
+
