@@ -159,7 +159,30 @@
 + http://gaoya.blog.163.com/blog/static/602780662013119105315551/
 + http://gaoya.blog.163.com/blog/static/602780662013312102631148/
 + http://gaoya.blog.163.com/blog/static/6027806620134109482796/
-+ 
++ http://gaoya.blog.163.com/blog/static/6027806620135135167980/
++ http://gaoya.blog.163.com/blog/static/6027806620137995839429/
++ http://gaoya.blog.163.com/blog/static/60278066201371241047701/
++ http://gaoya.blog.163.com/blog/static/6027806620138595318275/
++ http://gaoya.blog.163.com/blog/static/60278066201381391013815/
++ http://gaoya.blog.163.com/blog/static/60278066201381610544448/
++ http://gaoya.blog.163.com/blog/static/60278066201382241720861/
++ http://gaoya.blog.163.com/blog/static/6027806620138251113111/
++ http://gaoya.blog.163.com/blog/static/60278066201382795959244/
++ http://gaoya.blog.163.com/blog/static/6027806620139924650245/
++ http://gaoya.blog.163.com/blog/static/60278066201310179501265/
++ http://gaoya.blog.163.com/blog/static/602780662013111983217747/
++ http://gaoya.blog.163.com/blog/static/6027806620140933256217/
++ http://gaoya.blog.163.com/blog/static/60278066201412195820796/
++ http://gaoya.blog.163.com/blog/static/60278066201502925754248/
++ http://gaoya.blog.163.com/blog/static/602780662015223114712407/
++ http://gaoya.blog.163.com/blog/static/60278066201522410547990/
++ http://gaoya.blog.163.com/blog/static/60278066201523141011580/
++ http://gaoya.blog.163.com/blog/static/60278066201532411559682/
++ http://gaoya.blog.163.com/blog/static/6027806620153309324578/
++ http://gaoya.blog.163.com/blog/static/60278066201542594516260/
++ http://gaoya.blog.163.com/blog/static/6027806620155191434417/
++ http://gaoya.blog.163.com/blog/static/6027806620140405224549/
++ http://gaoya.blog.163.com/blog/static/6027806620142239384860/
 
 
 
@@ -188,6 +211,18 @@ ETF计划
   + http://gaoya.blog.163.com/blog/static/602780662013312194821/
   + http://gaoya.blog.163.com/blog/static/602780662013326104053336/
   + http://gaoya.blog.163.com/blog/static/60278066201342992018407/
+  + http://gaoya.blog.163.com/blog/static/6027806620136159335552/
+  + http://gaoya.blog.163.com/blog/static/602780662013619409880/
+  + http://gaoya.blog.163.com/blog/static/60278066201362253215840/
+  + http://gaoya.blog.163.com/blog/static/6027806620136231035213/
+  + http://gaoya.blog.163.com/blog/static/602780662013715101919735/
+  + http://gaoya.blog.163.com/blog/static/6027806620138934116508/
+  + http://gaoya.blog.163.com/blog/static/60278066201411810564956/
+  + http://gaoya.blog.163.com/blog/static/6027806620150283131508/
+  + http://gaoya.blog.163.com/blog/static/60278066201531335325899/
+  + http://gaoya.blog.163.com/blog/static/6027806620154484442834/
+  + http://gaoya.blog.163.com/blog/static/602780662015519915313/
+  + http://gaoya.blog.163.com/blog/static/60278066201105145362/
   + 
 
 
@@ -207,12 +242,24 @@ ETF计划
    + http://gaoya.blog.163.com/blog/static/6027806620121118104827130/
    + http://gaoya.blog.163.com/blog/static/602780662013092447535/
    + http://gaoya.blog.163.com/blog/static/60278066201302123923652/
+   + http://gaoya.blog.163.com/blog/static/602780662013430101328826/
+   + http://gaoya.blog.163.com/blog/static/6027806620135723421654/
+   + http://gaoya.blog.163.com/blog/static/60278066201352152433484/
+   + http://gaoya.blog.163.com/blog/static/60278066201352613147460/
+   + http://gaoya.blog.163.com/blog/static/6027806620137541345178/
+   + http://gaoya.blog.163.com/blog/static/6027806620131021104630391/
+   + http://gaoya.blog.163.com/blog/static/60278066201423111058564/
+   + http://gaoya.blog.163.com/blog/static/602780662014463723585/
+   + http://gaoya.blog.163.com/blog/static/60278066201449101032253/
+   + http://gaoya.blog.163.com/blog/static/602780662014517103818575/
+   + http://gaoya.blog.163.com/blog/static/60278066201502110395900/
    + 
 
 
 商品：
     + http://gaoya.blog.163.com/blog/static/602780662013130244152/
     + http://gaoya.blog.163.com/blog/static/60278066201331511162632/
+    + http://gaoya.blog.163.com/blog/static/6027806620151584639895/
     + 
 
 
@@ -221,12 +268,21 @@ ETF计划
 + http://gaoya.blog.163.com/blog/static/6027806620116131492821/
 + http://gaoya.blog.163.com/blog/static/602780662011753572564/
 + http://gaoya.blog.163.com/blog/static/602780662011923102214126/
++ http://gaoya.blog.163.com/blog/static/60278066201372003242756/
++ http://gaoya.blog.163.com/blog/static/60278066201532284026394/
 + 
 
 
 网格
  + http://gaoya.blog.163.com/blog/static/60278066201252525914179/
+ + http://gaoya.blog.163.com/blog/static/60278066201372321836573/
+ + http://gaoya.blog.163.com/blog/static/60278066201392394817350/
+ + http://gaoya.blog.163.com/blog/static/6027806620147531520319/
+ + http://gaoya.blog.163.com/blog/static/6027806620150634723823/
+ + http://gaoya.blog.163.com/blog/static/60278066201502213659367/
+ + http://gaoya.blog.163.com/blog/static/60278066201561593432546/
  + 
+
 
 分级
  + http://gaoya.blog.163.com/blog/static/60278066201266112649811/
@@ -235,7 +291,19 @@ ETF计划
  + http://gaoya.blog.163.com/blog/static/602780662012115114052173/
  + http://gaoya.blog.163.com/blog/static/60278066201301412234820/
  + http://gaoya.blog.163.com/blog/static/60278066201312694615312/
- +
+ + http://gaoya.blog.163.com/blog/static/60278066201391485724651/
+ + http://gaoya.blog.163.com/blog/static/60278066201538245886/
+ + http://gaoya.blog.163.com/blog/static/602780662015393446777/
+ + http://gaoya.blog.163.com/blog/static/6027806620154810341917/
+ + http://gaoya.blog.163.com/blog/static/60278066201542611329659/
+ + http://gaoya.blog.163.com/blog/static/6027806620154279559303/
+ + http://gaoya.blog.163.com/blog/static/60278066201542862853369/
+ + http://gaoya.blog.163.com/blog/static/6027806620154304123867/
+ + http://gaoya.blog.163.com/blog/static/602780662015524102551795/
+ + http://gaoya.blog.163.com/blog/static/60278066201552524523151/
+ + 
+
+
 
 外汇
     + http://gaoya.blog.163.com/blog/static/60278066201342243025365/
